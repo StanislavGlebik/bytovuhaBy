@@ -1,5 +1,4 @@
 {% load staticfiles %}
-
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
@@ -9,6 +8,7 @@
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -34,10 +34,29 @@
       </div>
     </div>
 
-        <div class="jumbotron">
+    <div class="jumbotron">
       <div class="container">
-			<h1>Бытовуха.by</h1>
-			<p>Onliner в мире бытовой техники! </p>
+        <h1>{{heading}}</h1>
+			<ul>
+				{%for product in products %}
+					<li>{{product.name}}</li>
+				{%endfor%}
+			</ul>
+        <p><a class="btn btn-primary btn-lg">Купить! &raquo;</a></p>
       </div>
     </div>
-</body>
+
+	<!--div class="row">
+		<div class="col-md-8 col-sm-offset-4"> 
+			<h1>Список ваших покупок, {{username}}</h1>
+		</div>
+
+		<div class="col-md-8 col-sm-offset-4">
+			<ul>
+				{%for product in products.all %}
+					<li>{{product.name}}</li>
+				{%endfor%}
+			</ul>
+		</div>
+	</div-->
+</body>	

@@ -10,13 +10,20 @@ def user(request, user_id):
 	user = get_object_or_404(User, id=user_id)
 	return HttpResponse("user {0}".format(user.name))
 
+def products_for_user(request, user_id):
+	user = get_object_or_404(User, id=user_id)
+	products = user.products.all()
+	context = {'products': products, 'heading': "Your products, " + user.name}
+	return render(request, 'bytovuhaApp/products_list.html', context)
+
 def all_users(request):
 	users = get_list_or_404(User)
 	return HttpResponse(" ".join(map(lambda user: user.name, users)))
 
 def all_products(request):
 	products = get_list_or_404(Product)
-	return HttpResponse(" ".join(map(lambda product: product.name, products)))
+	context = {'products': products, 'heading': "All our products"}
+	return render(request, 'bytovuhaApp/products_list.html', context)
 
 def product(request, product_id):
 	product = get_object_or_404(Product, id=product_id)

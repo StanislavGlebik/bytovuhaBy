@@ -12,7 +12,7 @@ from models import Customer, Product
 def index(request):
 	return render(request, 'bytovuhaApp/index.html')
 
-#TODO: I think, we can do it without this method. We need to check this
+#TODO: to think about decorator for login_action and register
 def login_action(request):
 	if request.POST.has_key('username') and request.POST.has_key('pass'):
 		user = authenticate(username=request.POST['username'], password=request.POST['pass'])
@@ -29,14 +29,34 @@ def login_action(request):
 	else:
 		return render(request, 'bytovuhaApp/login.html')
 
+def register(request):
+	if request.POST.has_key('username') and request.POST.has_key('pass'):
+		user = User.objects.create_user(request.POST['username'])
+		user.set_password(request.POST['pass'])
+		user.save()
+
+		customer = Customer(user=user)
+		customer.save()
+		return redirect("/login/")
+	else:
+		return render(request, 'bytovuhaApp/registration.html')
+
+
 def logout_action(request):
 	logout(request)
-	return redirect_to_login("/")
+	return redirect("/")
+
+def contacts(request):
+	return render(request, 'bytovuhaApp/contacts.html')
 
 def show_basket(request):
-	products = User.objects.get(id = request.user.id).customer.products.all()	
-	context = {'products': products, 'heading': 'Your basket'}
-	return render(request, 'bytovuhaApp/basket.html', context)
+	if request.user.is_authenticated():
+		products = User.objects.get(id = request.user.id).customer.products.all()	
+		context = {'products': products, 'heading': 'Your basket'}
+		return render(request, 'bytovuhaApp/basket.html', context)
+	else: 
+		# TODO: change to normal next url
+		return redirect_to_login("/")
 
 def add_to_basket(request, product_id):
 	if request.user.is_authenticated():
@@ -72,3 +92,4 @@ def all_products(request):
 def product(request, product_id):
 	product = get_object_or_404(Product, id=product_id)
 	return render(request, 'bytovuhaApp/product_description.html', {'product': product})
+

@@ -21,11 +21,16 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Главная</a></li>
-            <li><a href="/all_products">Каталог товаров</a></li>            
-            <li><a href="#contact">Наши контакты</a></li>
-            <li><a href="/basket">Корзина</a></li>            
-            <li><a href="/logout">Выйти из системы</a></li>            
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/all_products">Catalog</a></li>            
+            <li><a href="/contacts">Contacts</a></li>
+            <li><a href="/basket">Basket</a></li>  
+            {% if user.is_authenticated %}          
+              <li><a href="/logout">Log out</a></li>
+            {% else %}
+              <li><a href="/login">Log in</a></li>                  
+            {% endif %}    
+
           </ul>
         </div><!--/.navbar-collapse -->
       </div>

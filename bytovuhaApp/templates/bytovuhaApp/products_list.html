@@ -1,62 +1,16 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<head>
-	<meta charset="utf-8">
-	<title>Bytovuha.by</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/bootstrap.min.css' %}"/>	
-	<script type="text/javascript" src="{% static 'bytovuhaApp/js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
-</head>
-<body>
+{% extends "bytovuhaApp/base.html" %}
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Bytovuha.by</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Главная</a></li>
-            <li><a href="#contact">Наши контакты</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Введите" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Найти!</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
+{% block content %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1>{{heading}}</h1>
+		<ul>
+			{%for product in products %}
+				<li><a href="{% url 'product_description' product.id %}">{{product.name}}</a></li>
+			{%endfor%}
+		</ul>
     </div>
+  </div>
+{% endblock %}
 
-    <div class="jumbotron">
-      <div class="container">
-        <h1>{{heading}}</h1>
-			<ul>
-				{%for product in products %}
-					<li>{{product.name}}</li>
-				{%endfor%}
-			</ul>
-        <p><a class="btn btn-primary btn-lg">Купить! &raquo;</a></p>
-      </div>
-    </div>
-
-	<!--div class="row">
-		<div class="col-md-8 col-sm-offset-4"> 
-			<h1>Список ваших покупок, {{username}}</h1>
-		</div>
-
-		<div class="col-md-8 col-sm-offset-4">
-			<ul>
-				{%for product in products.all %}
-					<li>{{product.name}}</li>
-				{%endfor%}
-			</ul>
-		</div>
-	</div-->
-</body>	
+	

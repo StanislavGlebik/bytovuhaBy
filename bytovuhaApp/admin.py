@@ -1,5 +1,5 @@
 from django.contrib import admin
-from bytovuhaApp.models import User, Product
+from bytovuhaApp.models import Customer, Product
 
-admin.site.register(User)
+admin.site.register(Customer)
 admin.site.register(Product)

@@ -1,0 +1,17 @@
+{% extends "bytovuhaApp/base.html" %}
+
+{% block content %}
+  <div class="jumbotron">
+    <div class="container">
+      <h1>{{heading}}</h1>
+		<ul>
+			{%for product in products %}
+				<li><a href="{% url 'product_description' product.id %}">{{product.name}}</a> <a class="btn btn-primary btn-lg" href="{% url 'remove' product.id%}">Remove from basket &raquo;</a></li>
+			{%endfor%}
+		</ul>
+      <p><a class="btn btn-primary btn-lg" href="/pay/">Pay! &raquo;</a></p>
+    </div>
+  </div>
+{% endblock %}
+
+	

@@ -1,25 +1,28 @@
 {% extends "bytovuhaApp/base.html" %}
 
 {% block content %}
+
   <div class="jumbotron">
     <div class="container">
 	    <h1>{{heading}}</h1>
 
-		<table class="table">
+		<table class="table table-condensed">
 		  <tr>
 		    <th>Product name</th>
 		    <th>Price</th>
+		    <th>Amount</th>		    
 		    <th></th>
 		  </tr>
-			{%for product in products %}		
+			{%for name, price, amount, id in buyings %}		
 				  <tr>
-				    <td>{{product.name}}</td>
-				    <td>${{product.price}}</td>
-				    <td><a href="{% url 'remove' product.id%}">Remove from basket &raquo;</a></li></td>
+				    <td>{{name}}</td>
+				    <td>${{price}}</td>
+				    <td>{{amount}}</td>
+				    <td><a href="{% url 'remove' id%}">Remove from basket &raquo;</a></td>
 				  </tr>
 			{%endfor%}
-
 		</table>
+
 
 		{% if products%}
 	  		<p><a class="btn btn-primary btn-lg" href="/pay/">Pay! &raquo;</a></p>

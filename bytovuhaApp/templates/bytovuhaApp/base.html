@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/bootstrap.min.css' %}"/>	
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
-  <script type="text/javascript" src="{% static 'bytovuhaApp/js/holder.js' %}"></script>    
+  <script type="text/javascript" src="{% static 'bytovuhaApp/js/dropdown.js' %}"></script>    
 </head>
 <body>
 
@@ -19,10 +19,24 @@
           <a class="navbar-brand" href="/"><b><font color=#5050FF>Onl</font><font color=#FF5050>i</font><font color=#5050FF>ner</font></b>
                     <font color=#888888>в мире бытовой техники</font></a>
             <ul class="nav navbar-nav">
-            <li><a href="/all_products">Catalog</a></li>            
-            <li><a href="/contacts">Contacts</a></li>
-            <li><a href="/basket">Basket</a></li>  
-          </ul>
+              <li><a href="/all_products">Catalog</a></li>            
+
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+              </li>
+
+              <li><a href="/contacts">Contacts</a></li>
+              <li><a href="/basket">Basket</a></li>  
+
+
+            </ul>
           
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}          

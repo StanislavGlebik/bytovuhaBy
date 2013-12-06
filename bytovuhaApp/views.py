@@ -4,12 +4,24 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.models import User
 
-from models import Customer, Product
+from models import Customer, Product, Buyings
 
 #TODO: remove hardcode from urls!!!
 
+#Dirty hack
+def helper_add_to_basket(customer, product):
+	amount = customer.products.filter(id=product.id).count() + 1
+	Buyings.objects.filter(customer=customer, product=product).delete()	
+
+	buying = Buyings(customer=customer, product=product, amount=amount)
+	buying.save()
+
+def helper_remove_from_basket(customer, product):
+	byings_to_delete = Buyings.objects.filter(customer=customer, product=product)	
+	byings_to_delete.delete()
+
 #TODO: I think, we can do it without this method. We need to check this
-def index(request):
+def index(request):	
 	return render(request, 'bytovuhaApp/index.html')
 
 #TODO: to think about decorator for login_action and register
@@ -41,7 +53,6 @@ def register(request):
 	else:
 		return render(request, 'bytovuhaApp/registration.html')
 
-
 def logout_action(request):
 	logout(request)
 	return redirect("/")
@@ -51,8 +62,11 @@ def contacts(request):
 
 def show_basket(request):
 	if request.user.is_authenticated():
-		products = User.objects.get(id = request.user.id).customer.products.all()	
-		context = {'products': products, 'heading': 'Your basket'}
+		customer = User.objects.get(id = request.user.id).customer
+		buyings = Buyings.objects.select_related().filter(customer=customer)
+		#products = User.objects.get(id = request.user.id).customer.products.all()	
+
+		context = {'buyings': map(lambda x: (x.product.name, x.product.price, x.amount, x.product.id), buyings), 'heading': 'Your basket'}
 		return render(request, 'bytovuhaApp/basket.html', context)
 	else: 
 		# TODO: change to normal next url
@@ -61,7 +75,8 @@ def show_basket(request):
 def add_to_basket(request, product_id):
 	if request.user.is_authenticated():
 		product = get_object_or_404(Product, id=product_id)
-		User.objects.get(id = request.user.id).customer.products.add(product)
+		customer = User.objects.get(id = request.user.id).customer
+		helper_add_to_basket(customer, product)
 		return redirect('all_products/')
 	else:
 		# TODO: change to normal next url
@@ -70,7 +85,8 @@ def add_to_basket(request, product_id):
 def remove_product_from_basket(request, product_id):
 	if request.user.is_authenticated():
 		product = get_object_or_404(Product, id=product_id)
-		User.objects.get(id = request.user.id).customer.products.remove(product)
+		customer = User.objects.get(id = request.user.id).customer
+		helper_remove_from_basket(customer, product)
 		return redirect('basket/')
 	else:
 		# TODO: change to normal next url

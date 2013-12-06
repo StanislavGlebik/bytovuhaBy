@@ -9,6 +9,11 @@ class Product(models.Model):
 
 class Customer(models.Model):
 	user = models.OneToOneField(User)
-	products = models.ManyToManyField(Product)
+	products = models.ManyToManyField(Product, through='Buyings')
 	def __unicode__(self):
 		return self.user.username
+
+class Buyings(models.Model):
+	customer = models.ForeignKey(Customer)
+	product = models.ForeignKey(Product)
+	amount = models.IntegerField(default=0)

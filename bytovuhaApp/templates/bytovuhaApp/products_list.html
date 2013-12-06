@@ -4,11 +4,20 @@
   <div class="jumbotron">
     <div class="container">
       <h1>{{heading}}</h1>
-		<ul>
-			{%for product in products %}
-				<li><a href="{% url 'product_description' product.id %}">{{product.name}}</a></li>
+
+		<table class="table">
+		  <tr>
+		    <th>Product name</th>
+		    <th>Price</th>
+		  </tr>
+			{%for product in products %}		
+				  <tr>
+				    <td><li><a href="{% url 'product_description' product.id %}">{{product.name}}</a></li></td>
+				    <td>${{product.price}}</td>
+				  </tr>
 			{%endfor%}
-		</ul>
+
+		</table>
     </div>
   </div>
 {% endblock %}

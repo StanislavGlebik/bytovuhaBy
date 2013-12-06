@@ -3,17 +3,27 @@
 {% block content %}
   <div class="jumbotron">
     <div class="container">
-      <h1>{{heading}}</h1>
-		<ul>
-			{%for product in products %}
-				<li><a href="{% url 'product_description' product.id %}">{{product.name}}</a> <a class="btn btn-primary btn-lg" href="{% url 'remove' product.id%}">Remove from basket &raquo;</a></li>
-			{% empty %}
-				Your basket is so empty :( 
+	    <h1>{{heading}}</h1>
+
+		<table class="table">
+		  <tr>
+		    <th>Product name</th>
+		    <th>Price</th>
+		    <th></th>
+		  </tr>
+			{%for product in products %}		
+				  <tr>
+				    <td>{{product.name}}</td>
+				    <td>${{product.price}}</td>
+				    <td><a href="{% url 'remove' product.id%}">Remove from basket &raquo;</a></li></td>
+				  </tr>
 			{%endfor%}
-		</ul>
+
+		</table>
+
 		{% if products%}
-      		<p><a class="btn btn-primary btn-lg" href="/pay/">Pay! &raquo;</a></p>
-      	{% endif %}
+	  		<p><a class="btn btn-primary btn-lg" href="/pay/">Pay! &raquo;</a></p>
+	  	{% endif %}
     </div>
   </div>
 {% endblock %}

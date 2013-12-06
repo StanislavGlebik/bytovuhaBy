@@ -4,16 +4,17 @@
 <head>
 	<meta charset="utf-8">
 	<title>Bytovuha.by</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/bootstrap.min.css' %}"/>	
+	<link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/bootstrap.min.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/sticky-footer.css' %}"/>  	
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
   <script type="text/javascript" src="{% static 'bytovuhaApp/js/dropdown.js' %}"></script>    
 </head>
 <body>
-
+    <div id="wrap">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
-        
+
         <div class="navbar-collapse collapse">
           <a class="navbar-brand" href="/">Бытовуха.by</a>
             <ul class="nav navbar-nav">
@@ -30,8 +31,6 @@
               </li>
 
               <li><a href="/basket">Basket</a></li>  
-              <li><a href="/contacts">About us</a></li>
-
             </ul>
 
             {% if user.is_authenticated %}          
@@ -55,5 +54,14 @@
       </div>
     </div>
 
-    {% block content %} {% endblock %}
+
+      {% block content %} {% endblock %}
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Read <a href="/contacts">about us</a></p>
+      </div>
+    </div>
+
 </body>

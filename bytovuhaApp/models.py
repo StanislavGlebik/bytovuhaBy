@@ -1,9 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Product(models.Model):
+	CATEGORIES = (
+		('Washing_machines', 'Washing machines'),
+		('Electronics', 'Electronics'),
+	)
+
 	name = models.CharField(max_length=50)
 	price = models.IntegerField()
+	category = models.CharField(max_length=50, choices=CATEGORIES)
 	def __unicode__(self):
 		return self.name
 

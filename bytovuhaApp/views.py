@@ -100,6 +100,12 @@ def pay_for_products(request):
 		# TODO: change to normal next url
 		return redirect_to_login("/")	
 
+#TODO: remove redundancy
+def products_for_category(request, category):
+	products = Product.objects.filter(category=category)
+	context = {'products': products, 'heading': "All our products"}
+	return render(request, 'bytovuhaApp/products_list.html', context)
+
 def all_products(request):
 	products = get_list_or_404(Product)
 	context = {'products': products, 'heading': "All our products"}

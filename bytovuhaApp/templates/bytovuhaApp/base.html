@@ -16,35 +16,40 @@
         
         <div class="navbar-collapse collapse">
           <a class="navbar-brand" href="/">Бытовуха.by</a>
-          <a class="navbar-brand" href="/"><b><font color=#5050FF>Onl</font><font color=#FF5050>i</font><font color=#5050FF>ner</font></b>
-                    <font color=#888888>в мире бытовой техники</font></a>
             <ul class="nav navbar-nav">
-              <li><a href="/all_products">Catalog</a></li>            
 
               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
+                    <li><a href="/all_products">All</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
+                    <li class="dropdown-header">Categories</li>
+                    <li><a href="products_for_category/Washing_machines/">Washing machines</a></li>
+                    <li><a href="products_for_category/Electronics/">Electronics</a></li>                    
                   </ul>
               </li>
 
-              <li><a href="/contacts">Contacts</a></li>
               <li><a href="/basket">Basket</a></li>  
-
+              <li><a href="/contacts">About us</a></li>
 
             </ul>
-          
-          <ul class="nav navbar-nav navbar-right">
+
             {% if user.is_authenticated %}          
-              <li><a href="/logout">Log out</a></li>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">Log out</a></li>
+              </ul> 
             {% else %}
-              <li><a href="/login">Log in</a></li>                  
+              <form class="navbar-form navbar-right" action="login/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="Username" name="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="pass" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+              </form>
             {% endif %}       
-          </ul> 
 
         </div><!--/.navbar-collapse -->
       </div>

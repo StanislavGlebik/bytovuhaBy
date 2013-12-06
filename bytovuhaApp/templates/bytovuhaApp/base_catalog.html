@@ -1,0 +1,92 @@
+﻿{% load staticfiles %}
+
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Bytovuha.by</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/bootstrap.min.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/sticky-footer.css' %}"/>  	
+	<script type="text/javascript" src="{% static 'bytovuhaApp/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
+  <script type="text/javascript" src="{% static 'bytovuhaApp/js/dropdown.js' %}"></script>    
+</head>
+<body>
+    <div id="wrap">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+
+        <div class="navbar-collapse collapse">
+          <a class="navbar-brand" href="/">Бытовуха.by</a>
+            <ul class="nav navbar-nav">
+
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/all_products">All</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Categories</li>
+                    <li><a href="products_for_category/Washing_machines/">Washing machines</a></li>
+                    <li><a href="products_for_category/Electronics/">Electronics</a></li>                    
+                  </ul>
+              </li>
+
+              <li><a href="/basket">Basket</a></li>  
+            </ul>
+
+            {% if user.is_authenticated %}          
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout">Log out</a></li>
+              </ul> 
+            {% else %}
+              <form class="navbar-form navbar-right" action="login/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="Username" name="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                  <input type="password" name="pass" class="form-control" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+              </form>
+            {% endif %}       
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+
+      <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <h2><font color=#FFFFFF>Top margin</font></h2>
+      
+        <div class="col-sm-3">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          
+            <div class="list-group">
+            <a href="/all_products" class="list-group-item active">Все продукты</a>
+            <a href="products_for_category/Washing_machines/" class="list-group-item">Стиральные машины</a>
+            <a href="products_for_category/Electronics/" class="list-group-item">Электроника</a>
+            <a href="#" class="list-group-item">Что-нибудь еще</a>
+          
+          </div>
+        </div><!--/span-->
+
+        <div class="col-sm-9 sidebar-offcanvas" id="sidebar" role="navigation">
+          
+            {% block content %} {% endblock %}
+      </div><!--/row-->
+
+    </div><!--/.container-->
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Read <a href="/contacts">about us</a></p>
+      </div>
+    </div>
+
+</body>

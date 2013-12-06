@@ -7,11 +7,13 @@
 
 		<table class="table">
 		  <tr>
+		  	<th></th>
 		    <th>Product name</th>
 		    <th>Price</th>
 		  </tr>
 			{%for product in products %}		
 				  <tr>
+				  	<td><img src="{{ product.image_url }}" class="img-polaroid"></td>
 				    <td><li><a href="{% url 'product_description' product.id %}">{{product.name}}</a></li></td>
 				    <td>${{product.price}}</td>
 				  </tr>

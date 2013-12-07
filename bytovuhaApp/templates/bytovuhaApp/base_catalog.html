@@ -35,7 +35,7 @@
           <a class="navbar-brand" href="/">Бытовуха.by</a>
             <ul class="nav navbar-nav">
 
-              <li><a href="/basket">Basket</a></li>  
+              <li><a href="/basket">Корзина</a></li>  
             </ul>
 
             {% if user.is_authenticated %}          
@@ -73,7 +73,8 @@
           </p>
           
             <div class="list-group">
-            <a href="/products_for_category//0" class="list-group-item active">Все продукты</a>
+            <a href="#" class="list-group-item active">Каталог</a>            
+            <a href="/products_for_category//0" class="list-group-item">Все продукты</a>
             <a href="/products_for_category/Washing_machines/0" class="list-group-item">Стиральные машины</a>
             <a href="/products_for_category/Electronics/0" class="list-group-item">Электроника</a>
             <a href="/products_for_category/Pots/0" class="list-group-item">Чайники</a>

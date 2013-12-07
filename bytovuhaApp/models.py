@@ -1,13 +1,14 @@
+# encoding=utf-8
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Product(models.Model):
 	CATEGORIES = (
-		('Washing_machines', 'Washing machines'),
-		('Electronics', 'Electronics'),
-		('Pots', 'Pots'),		
-		('Tosters', 'Tosters'),		
+		('Washing_machines', 'Стиральные машины'),
+		('Electronics', 'Электроника'),
+		('Pots', 'Чайники'),		
+		('Tosters', 'Тостеры'),		
 	)
 
 	name = models.CharField(max_length=50)

@@ -9,14 +9,14 @@ from django.contrib.auth.models import User
 #customer = Customer(user=user)
 #customer.save()
 
-user = User.objects.create_user('Andrew')
+user = User.objects.create_user('Andrew', 'andrew414414@gmail.com')
 user.set_password('111111')
 user.save()
 
 customer = Customer(user=user)
 customer.save()
 
-user = User.objects.create_user('Nastya')
+user = User.objects.create_user('Nastya', 'anastasiya.koloskova@gmail.com')
 user.set_password('111111')
 user.save()
 

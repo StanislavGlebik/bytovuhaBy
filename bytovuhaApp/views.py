@@ -1,3 +1,4 @@
+﻿# encoding=utf-8
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -29,11 +30,11 @@ def login_action(request):
 	if request.POST.has_key('username') and request.POST.has_key('pass'):
 		user = authenticate(username=request.POST['username'], password=request.POST['pass'])
 		if user is not None:
-		    if user.is_active:
-		    	login(request, user)
-		    	return render(request, 'bytovuhaApp/index.html')
-		    else:
-	    		context = {'message': 'User '}
+			if user.is_active:
+				login(request, user)
+				return render(request, 'bytovuhaApp/index.html')
+			else:
+				context = {'message': 'User '}
 		else:
 			context = {'message': "The username and password were incorrect."}
 
@@ -43,12 +44,15 @@ def login_action(request):
 
 def register(request):
 	if request.POST.has_key('username') and request.POST.has_key('pass'):
-		user = User.objects.create_user(request.POST['username'])
+		user = User.objects.create_user(request.POST['username'], request.POST['email'])
 		user.set_password(request.POST['pass'])
 		user.save()
 
 		customer = Customer(user=user)
 		customer.save()
+		
+		send_mail("Регистрация на Бытовуха.by", "Добро пожаловать в увлекательный мир Бытовухи!", request.POST['email'])
+		
 		return redirect("/login/")
 	else:
 		return render(request, 'bytovuhaApp/registration.html')
@@ -95,6 +99,7 @@ def remove_product_from_basket(request, product_id):
 def pay_for_products(request):
 	if request.user.is_authenticated():
 		User.objects.get(id = request.user.id).customer.products.clear()
+		send_mail("Спасибо за покупку", "Бытовуха.by поздравляет вас с покупкой!", User.objects.get(id = request.user.id).email)
 		return render(request, 'bytovuhaApp/thank_you.html')
 	else:
 		# TODO: change to normal next url
@@ -130,7 +135,6 @@ def personalpage(request):
 		return redirect_to_login("/")
 
 #Debug
-def send_mail(request):
-	print "OLOLO"
+def send_mail(subject, text, to):
 	from django.core.mail import send_mail
-	send_mail("Lab3", "Subj", "glebik.stanislav@gmail.com", ["glebik.stanislav@yandex.ru"], fail_silently=False)
+	send_mail(subject, text, "bytovuhaBy@gmail.com", [to], fail_silently=False)

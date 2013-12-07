@@ -77,7 +77,7 @@ def add_to_basket(request, product_id):
 		product = get_object_or_404(Product, id=product_id)
 		customer = User.objects.get(id = request.user.id).customer
 		helper_add_to_basket(customer, product)
-		return redirect('all_products/')
+		return redirect('products_for_category//0')
 	else:
 		# TODO: change to normal next url
 		return redirect_to_login("/")
@@ -100,15 +100,21 @@ def pay_for_products(request):
 		# TODO: change to normal next url
 		return redirect_to_login("/")	
 
-#TODO: remove redundancy
-def products_for_category(request, category):
-	products = Product.objects.filter(category=category)
-	context = {'products': products, 'heading': "All our products"}
-	return render(request, 'bytovuhaApp/products_list.html', context)
+def products_for_category(request, category, page):
+	if len(category) == 0:
+		products = Product.objects.filter()
+	else:
+		products = Product.objects.filter(category=category)
 
-def all_products(request):
-	products = get_list_or_404(Product)
-	context = {'products': products, 'heading': "All our products"}
+	page = int(page)
+	if page < 0:
+		page = 0
+
+	prev_page = page-1
+	if prev_page<0:
+		prev_page=0
+
+	context = {'products': products[page*5:(page+1)*5], 'heading': "All our products", 'category': category, 'prev_page':prev_page, 'next_page': page+1}
 	return render(request, 'bytovuhaApp/products_list.html', context)
 
 def product(request, product_id):

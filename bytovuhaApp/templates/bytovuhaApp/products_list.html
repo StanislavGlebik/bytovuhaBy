@@ -18,8 +18,12 @@
 				    <td>${{product.price}}</td>
 				  </tr>
 			{%endfor%}
-
 		</table>
+<ul class="pager">
+  <li><a href="/products_for_category/{{category}}/{{prev_page}}">Previous</a></li>
+  <li><a href="/products_for_category/{{category}}/{{next_page}}">Next</a></li>
+</ul>
+
     </div>
   </div>
 {% endblock %}

@@ -121,3 +121,8 @@ def product(request, product_id):
 	product = get_object_or_404(Product, id=product_id)
 	return render(request, 'bytovuhaApp/product_description.html', {'product': product})
 
+#Debug
+def send_mail(request):
+	print "OLOLO"
+	from django.core.mail import send_mail
+	send_mail("Lab3", "Subj", "glebik.stanislav@gmail.com", ["glebik.stanislav@yandex.ru"], fail_silently=False)

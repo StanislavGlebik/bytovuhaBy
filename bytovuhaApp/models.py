@@ -6,6 +6,8 @@ class Product(models.Model):
 	CATEGORIES = (
 		('Washing_machines', 'Washing machines'),
 		('Electronics', 'Electronics'),
+		('Pots', 'Pots'),		
+		('Tosters', 'Tosters'),		
 	)
 
 	name = models.CharField(max_length=50)

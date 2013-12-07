@@ -1,15 +1,16 @@
-{% extends "bytovuhaApp/register_base.html" %}
+﻿{% extends "bytovuhaApp/register_base.html" %}
 
 {% block content %}
     <div class="container">
       <form class="form-signin" action="login/" method="post">
         {% csrf_token %}
         <h2 class="form-signin-heading">{{message}}</h2>
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="Username" name="username" class="form-control" placeholder="Username" autofocus>
-        <input type="password" name="pass" class="form-control" placeholder="Password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <a class="btn btn-lg btn-primary btn-block" href="/register/">Register</a>
+        <h2 align="center" class="form-signin-heading">Вход</h2>
+        <input type="Username" name="username" class="form-control" placeholder="Имя пользователя" autofocus>
+		<p></p>
+        <input type="password" name="pass" class="form-control" placeholder="Пароль"><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+        <a class="btn btn-lg btn-primary btn-block" href="/register/">Зарегистрироваться</a>
       </form>
     </div> <!-- /container -->
 

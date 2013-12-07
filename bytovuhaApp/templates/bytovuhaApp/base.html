@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
-	<title>Bytovuha.by</title>
+	<title>Бытовуха.by</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/bootstrap.min.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/sticky-footer.css' %}"/>  	
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/bootstrap.min.js' %}"></script>
@@ -25,19 +25,19 @@
 
             {% if user.is_authenticated %}          
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Log out</a></li>
+                <li><a href="/logout">Выйти из системы</a></li>
               </ul> 
             {% else %}
               <form class="navbar-form navbar-right" action="login/" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                  <input type="Username" name="username" class="form-control" placeholder="Username">
+                  <input type="Username" name="username" class="form-control" placeholder="Имя пользователя">
                 </div>
                 <div class="form-group">
-                  <input type="password" name="pass" class="form-control" placeholder="Password">
+                  <input type="password" name="pass" class="form-control" placeholder="Пароль">
                 </div>
-                <button type="submit" class="btn btn-default">Login</button>
-                <a class="btn btn-default" href="/register/">Register</a>  
+                <button type="submit" class="btn btn-default">Войти</button>
+                <a class="btn btn-default" href="/register/">Зарегистрироваться</a>  
               </form>
             {% endif %}       
 
@@ -51,7 +51,7 @@
 
     <div id="footer">
       <div class="container">
-        <p class="text-muted credit">Read <a href="/contacts">about us</a></p>
+        <p class="text-muted credit">Бытовуха.by &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Прочтите <a href="/contacts">о нас</a>, пожалуйста</p>
       </div>
     </div>
 

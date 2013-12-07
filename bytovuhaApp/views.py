@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 from models import Customer, Product, Buyings
 
@@ -45,7 +46,10 @@ def login_action(request):
 
 def register(request):
 	if request.POST.has_key('username') and request.POST.has_key('pass'):
-		user = User.objects.create_user(request.POST['username'], request.POST['email'])
+		try:
+			user = User.objects.create_user(request.POST['username'], request.POST['email'])
+		except IntegrityError:
+			return render(request, 'bytovuhaApp/registration.html', {'message':'', 'alert':True})
 		user.set_password(request.POST['pass'])
 		user.save()
 
@@ -56,7 +60,7 @@ def register(request):
 		
 		return redirect("/login/")
 	else:
-		return render(request, 'bytovuhaApp/registration.html')
+		return render(request, 'bytovuhaApp/registration.html', {'message':'Регистрация', 'alert':False})
 
 def logout_action(request):
 	logout(request)
@@ -71,7 +75,7 @@ def show_basket(request):
 		buyings = Buyings.objects.select_related().filter(customer=customer)
 		#products = User.objects.get(id = request.user.id).customer.products.all()	
 
-		context = {'buyings': map(lambda x: (x.product.name, x.product.price, x.amount, x.product.id), buyings), 'heading': 'Your basket'}
+		context = {'buyings': map(lambda x: (x.product.name, x.product.price, x.amount, x.product.id), buyings), 'heading': 'Корзина'}
 		return render(request, 'bytovuhaApp/basket.html', context)
 	else: 
 		# TODO: change to normal next url

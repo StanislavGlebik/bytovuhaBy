@@ -1,15 +1,15 @@
-{% extends "bytovuhaApp/base_catalog.html" %}
+﻿{% extends "bytovuhaApp/base_catalog.html" %}
 
 {% block content %}
   <div class="jumbotron">
     <div class="container">
-      <h1>{{heading}}</h1>
+      <h2>{{heading}}</h2>
 
 		<table class="table">
 		  <tr>
 		  	<th></th>
-		    <th>Product name</th>
-		    <th>Price</th>
+		    <th>Товар</th>
+		    <th>Стоимость</th>
 		  </tr>
 			{%for product in products %}		
 				  <tr>
@@ -20,8 +20,8 @@
 			{%endfor%}
 		</table>
 <ul class="pager">
-  <li><a href="/products_for_category/{{category}}/{{prev_page}}">Previous</a></li>
-  <li><a href="/products_for_category/{{category}}/{{next_page}}">Next</a></li>
+  <li><a href="/products_for_category/{{category}}/{{prev_page}}">   &laquo   </a></li>
+  <li><a href="/products_for_category/{{category}}/{{next_page}}">   &raquo   </a></li>
 </ul>
 
     </div>

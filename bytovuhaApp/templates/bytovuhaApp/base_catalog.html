@@ -8,7 +8,13 @@
   <link rel="stylesheet" type="text/css" href="{% static 'bytovuhaApp/css/sticky-footer.css' %}"/>  	
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/bootstrap.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
-  <script type="text/javascript" src="{% static 'bytovuhaApp/js/dropdown.js' %}"></script>    
+  <script type="text/javascript" src="{% static 'bytovuhaApp/js/dropdown.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'bytovuhaApp/js/holder.js' %}"></script> 
+<script>
+  $(document).ready(function(){
+    $('carousel-example-generic').carousel();
+  });
+</script>  
 </head>
 <body>
     <div id="wrap">

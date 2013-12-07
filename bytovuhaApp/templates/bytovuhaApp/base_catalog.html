@@ -25,17 +25,6 @@
           <a class="navbar-brand" href="/">Бытовуха.by</a>
             <ul class="nav navbar-nav">
 
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/all_products">All</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Categories</li>
-                    <li><a href="products_for_category/Washing_machines/">Washing machines</a></li>
-                    <li><a href="products_for_category/Electronics/">Electronics</a></li>                    
-                  </ul>
-              </li>
-
               <li><a href="/basket">Basket</a></li>  
             </ul>
 
@@ -53,6 +42,7 @@
                   <input type="password" name="pass" class="form-control" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-default">Login</button>
+                <a class="btn btn-default" href="/register/">Register</a>                  
               </form>
             {% endif %}       
 
@@ -73,9 +63,9 @@
           </p>
           
             <div class="list-group">
-            <a href="/all_products" class="list-group-item active">Все продукты</a>
-            <a href="products_for_category/Washing_machines/" class="list-group-item">Стиральные машины</a>
-            <a href="products_for_category/Electronics/" class="list-group-item">Электроника</a>
+            <a href="/products_for_category//0" class="list-group-item active">Все продукты</a>
+            <a href="/products_for_category/Washing_machines/0" class="list-group-item">Стиральные машины</a>
+            <a href="/products_for_category/Electronics/0" class="list-group-item">Электроника</a>
             <a href="#" class="list-group-item">Что-нибудь еще</a>
           
           </div>

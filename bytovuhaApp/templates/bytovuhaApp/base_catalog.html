@@ -10,11 +10,21 @@
 	<script type="text/javascript" src="{% static 'bytovuhaApp/js/jquery.js' %}"></script>	
   <script type="text/javascript" src="{% static 'bytovuhaApp/js/dropdown.js' %}"></script> 
   <script type="text/javascript" src="{% static 'bytovuhaApp/js/holder.js' %}"></script> 
-<script>
+  <script type="text/javascript" src="{% static 'bytovuhaApp/js/carousel.js' %}"></script>
+<script type="text/javascript">
   $(document).ready(function(){
     $('carousel-example-generic').carousel();
   });
-</script>  
+</script> 
+<script type="text/javascript">
+!function ($) {
+     var $window = $(window)
+
+    $(document).ready(function() {
+        $('.carousel').carousel();
+    });
+} (window.jQuery)
+</script> 
 </head>
 <body>
     <div id="wrap">

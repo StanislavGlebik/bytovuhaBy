@@ -127,6 +127,14 @@ def product(request, product_id):
 	product = get_object_or_404(Product, id=product_id)
 	return render(request, 'bytovuhaApp/product_description.html', {'product': product})
 
+def personalpage(request):
+	if request.user.is_authenticated():
+		customer = User.objects.get(id = request.user.id).customer
+		#context = {'products': , 'heading': "All our products", 'category': category, 'prev_page':prev_page, 'next_page': page+1}
+		return render(request, 'bytovuhaApp/personal_page.html', {'name': customer.name})
+	else:
+		return redirect_to_login("/")
+
 #Debug
 def send_mail(request):
 	print "OLOLO"

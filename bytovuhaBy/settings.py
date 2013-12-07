@@ -50,7 +50,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = r'C:\Users\stash93\bytovuhaBy\bytovuhaApp\static\bytovuhaApp\images\\'
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -66,6 +66,20 @@ STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
+
+
+DEFAULT_FROM_EMAIL  = 'my.postman@gmail.com' # send from e-mail address
+
+EMAIL_HOST_USER     = 'bytovuhaBy@gmail.com' # login if requared or ''
+EMAIL_HOST_PASSWORD = 'Ololololo'       # password
+
+EMAIL_HOST        = 'smtp.gmail.com' # SMTP server
+EMAIL_PORT          = 587     # SMTP server port (0 - use default port)
+EMAIL_USE_TLS       = True  # TTLS flag
+
+EMAIL_FAIL_SILENTLY = False # fail silently
+
+EMAIL_DEBUGLEVEL    = 0
 
 # Additional locations of static files
 STATICFILES_DIRS = (

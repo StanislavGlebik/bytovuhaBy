@@ -128,3 +128,9 @@ def personalpage(request):
 		return render(request, 'bytovuhaApp/personal_page.html', {'name': customer.name})
 	else:
 		return redirect_to_login("/")
+
+#Debug
+def send_mail(request):
+	print "OLOLO"
+	from django.core.mail import send_mail
+	send_mail("Lab3", "Subj", "glebik.stanislav@gmail.com", ["glebik.stanislav@yandex.ru"], fail_silently=False)

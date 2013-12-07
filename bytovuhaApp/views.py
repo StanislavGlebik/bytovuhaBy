@@ -1,3 +1,4 @@
+#coding=utf-8
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
@@ -101,9 +102,14 @@ def pay_for_products(request):
 		return redirect_to_login("/")	
 
 def products_for_category(request, category, page):
+
 	if len(category) == 0:
 		products = Product.objects.filter()
+		heading=u"Все наши продукты"
 	else:
+		for cat in Product.CATEGORIES:
+			if cat[0]==category:
+				heading=cat[1]
 		products = Product.objects.filter(category=category)
 
 	page = int(page)
@@ -114,7 +120,7 @@ def products_for_category(request, category, page):
 	if prev_page<0:
 		prev_page=0
 
-	context = {'products': products[page*5:(page+1)*5], 'heading': "All our products", 'category': category, 'prev_page':prev_page, 'next_page': page+1}
+	context = {'products': products[page*5:(page+1)*5], 'heading': heading, 'category': category, 'prev_page':prev_page, 'next_page': page+1}
 	return render(request, 'bytovuhaApp/products_list.html', context)
 
 def product(request, product_id):

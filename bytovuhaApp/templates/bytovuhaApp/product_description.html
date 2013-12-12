@@ -5,9 +5,15 @@
     <div class="container">
       {{product.name}}
 	  <br>
-      <img src="{{product.image_url}}" class="img-polaroid">
-	  <br>
-      <p><br><a class="btn btn-primary btn-lg" href="{% url 'buy' product.id %}">Добавить в корзину &raquo;</a></p>
+	  <table class="table">
+	  <tr>
+		  <td><img src="{{product.image_url}}" class="img-polaroid"></td>
+		  <td></td><td></td><td></td>
+		  <td>{{product.description}}</td>
+	  </tr>
+	  </table>
+      <p><a class="btn btn-primary btn-lg" href="{% url 'buy' product.id %}">Добавить в корзину &raquo;</a></p>
+	  
     </div>
   </div>
 {% endblock %}

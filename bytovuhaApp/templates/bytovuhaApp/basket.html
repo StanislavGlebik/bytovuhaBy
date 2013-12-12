@@ -3,29 +3,30 @@
 {% block content %}
   <div class="jumbotron">
     <div class="container">
-	    <h2>{{heading}}</h2>
+	    <font size=5px color=#606060>{{heading}}</font>
 
 		<table class="table">
 		  <tr>
-		    <th>Товар</th>
-		    <th>Стоимость</th>
-		    <th>Количество</th>		    
-		    <th></th>
+		    <td><font size=4px color=#606060>Товар</font></td>
+		    <td><div align="center"><font size=4px color=#606060>Стоимость</font></div></td>
+		    <td><div align="center"><font size=4px color=#606060>Количество</font></div></td>		    
+		    <td></td>
 		  </tr>
+
 			{%for name, price, amount, id in buyings %}		
 				  <tr>
 				    <td>{{name}}</td>
-				    <td>${{price}}</td>
-				    <td>{{amount}}</td>
-				    <td><a href="{% url 'remove' id%}">Удалить из корзины &raquo;</a></td>
+				    <td><div align="center">${{price}}</div></td>
+				    <td><div align="center">{{amount}}</div></td>
+				    <td><a href="{% url 'remove' id%}">Убрать &raquo;</a></td>
 				  </tr>
 			{%endfor%}
 		</table>
 
-<!--
+
 		{% if buyings%}
 	  		<p><a class="btn btn-primary btn-lg" href="/pay/">Купить &raquo;</a></p>
-	  	{% endif %}-->
+	  	{% endif %}
     </div>
   </div>
 {% endblock %}

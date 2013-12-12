@@ -3,19 +3,22 @@
 {% block content %}
   <div class="jumbotron">
     <div class="container">
-      <h2>{{heading}}</h2>
+      <font color=#606060 size=5px>{{heading}}</font>
 
 		<table class="table">
-		  <tr>
+		  <tr><!--
 		  	<th></th>
 		    <th>Товар</th>
-		    <th>Стоимость</th>
+		    <th>Стоимость</th>-->
+			<td></td>
+		    <td><font size=4px color=#606060>Товар</font></td>
+		    <td><div align="center"><font size=4px color=#606060>Стоимость</font></div></td>
 		  </tr>
 			{%for product in products %}		
 				  <tr>
 				  	<td><img src="{{ product.image_url }}" class="img-polaroid"></td>
 				    <td><a href="{% url 'product_description' product.id %}">{{product.name}}</a></td>
-				    <td>${{product.price}}</td>
+				    <td><div align="center">${{product.price}}</div></td>
 				  </tr>
 			{%endfor%}
 		</table>

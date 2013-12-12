@@ -5,6 +5,8 @@
     <div class="container">
 	    <font size=5px color=#606060>{{heading}}</font>
 
+		{% if buyings %}
+		
 		<table class="table">
 		  <tr>
 		    <td><font size=4px color=#606060>Товар</font></td>
@@ -23,9 +25,10 @@
 			{%endfor%}
 		</table>
 
-
-		{% if buyings%}
 	  		<p><a class="btn btn-primary btn-lg" href="/pay/">Купить &raquo;</a></p>
+		{% else %}
+			<br>
+			<font size=3px color=#606060>Ваша корзина пуста.</font>
 	  	{% endif %}
     </div>
   </div>

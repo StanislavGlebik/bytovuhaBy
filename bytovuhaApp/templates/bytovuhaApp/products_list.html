@@ -13,12 +13,21 @@
 			<td></td>
 		    <td><font size=4px color=#606060>Товар</font></td>
 		    <td><div align="center"><font size=4px color=#606060>Стоимость</font></div></td>
+			<td></td>
 		  </tr>
 			{%for product in products %}		
 				  <tr>
 				  	<td><img src="{{ product.image_url }}" class="img-polaroid"></td>
 				    <td><a href="{% url 'product_description' product.id %}">{{product.name}}</a></td>
 				    <td><div align="center">${{product.price}}</div></td>
+					<td><a href="{% url 'buy' product.id%}">В корзину &raquo;</a>
+					{% for buying in buyings %}
+						{% if buying.product.id = product.id %}
+						({{buying.amount}})
+						{% endif %}
+						
+					{% endfor %}
+					</td>
 				  </tr>
 			{%endfor%}
 		</table>

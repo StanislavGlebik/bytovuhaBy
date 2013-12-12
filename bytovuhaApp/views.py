@@ -13,7 +13,12 @@ from models import Customer, Product, Buyings
 
 #Dirty hack
 def helper_add_to_basket(customer, product):
-	amount = customer.products.filter(id=product.id).count() + 1
+	amount = customer.products.filter(id=product.id).count()
+	if (amount != 0):
+		buyings = Buyings.objects.select_related().filter(customer=customer, product=product)
+		amount = buyings[0].amount + 1
+	else:
+		amount = 1
 	Buyings.objects.filter(customer=customer, product=product).delete()	
 
 	buying = Buyings(customer=customer, product=product, amount=amount)
@@ -87,7 +92,7 @@ def add_to_basket(request, product_id):
 		product = get_object_or_404(Product, id=product_id)
 		customer = User.objects.get(id = request.user.id).customer
 		helper_add_to_basket(customer, product)
-		return redirect('products_for_category//0')
+		return redirect('products_for_category/'+product.category+'/'+'0')
 	else:
 		# TODO: change to normal next url
 		return redirect_to_login("/")
@@ -130,7 +135,21 @@ def products_for_category(request, category, page):
 	if prev_page<0:
 		prev_page=0
 
-	context = {'products': products[page*5:(page+1)*5], 'heading': heading, 'category': category, 'prev_page':prev_page, 'next_page': page+1}
+	next_page = page+1	
+	totalcount = products.count()
+	print totalcount
+	#for product in products
+	#	totalcount = totalcount+1
+	if next_page > ((totalcount-1) // 5):
+		next_page=((totalcount-1) // 5)
+
+	if request.user.is_authenticated():
+		customer = User.objects.get(id = request.user.id).customer
+		buyings = Buyings.objects.select_related().filter(customer=customer)
+		context = {'products': products[page*5:(page+1)*5], 'basket' : True, 'buyings': buyings , 'heading': heading, 'category': category, 'prev_page':prev_page, 'next_page': next_page}
+	else:
+		context = {'products': products[page*5:(page+1)*5], 'basket' : False , 'heading': heading, 'category': category, 'prev_page':prev_page, 'next_page': next_page}
+	
 	return render(request, 'bytovuhaApp/products_list.html', context)
 
 def product(request, product_id):

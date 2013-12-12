@@ -146,9 +146,9 @@ def products_for_category(request, category, page):
 	if request.user.is_authenticated():
 		customer = User.objects.get(id = request.user.id).customer
 		buyings = Buyings.objects.select_related().filter(customer=customer)
-		context = {'products': products[page*5:(page+1)*5], 'basket' : True, 'buyings': buyings , 'heading': heading, 'category': category, 'prev_page':prev_page, 'next_page': next_page}
+		context = {'products': products[page*5:(page+1)*5], 'basket' : True, 'buyings': buyings , 'heading': heading, 'category': category, 'prev_page':prev_page, 'current_page' : page + 1, 'next_page': next_page}
 	else:
-		context = {'products': products[page*5:(page+1)*5], 'basket' : False , 'heading': heading, 'category': category, 'prev_page':prev_page, 'next_page': next_page}
+		context = {'products': products[page*5:(page+1)*5], 'basket' : False , 'heading': heading, 'category': category, 'prev_page':prev_page, 'current_page' : page + 1, 'next_page': next_page}
 	
 	return render(request, 'bytovuhaApp/products_list.html', context)
 

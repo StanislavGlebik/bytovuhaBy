@@ -29,20 +29,21 @@ def index(request):
 
 #TODO: to think about decorator for login_action and register
 def login_action(request):
-	if request.POST.has_key('username') and request.POST.has_key('pass'):
+	if request.POST.has_key('username') and request.POST.has_key('pass') and request.POST['username']!='' and request.POST['pass']!='':
 		user = authenticate(username=request.POST['username'], password=request.POST['pass'])
 		if user is not None:
 			if user.is_active:
 				login(request, user)
 				return render(request, 'bytovuhaApp/index.html')
 			else:
-				context = {'message': 'User '}
+				context = {'message': 'Ошибка входа', 'alert':True}
 		else:
-			context = {'message': "The username and password were incorrect."}
+			context = {'message': "Неверные логин или пароль", 'alert':True}
 
 		return render(request, 'bytovuhaApp/login.html', context)
 	else:
-		return render(request, 'bytovuhaApp/login.html')
+		context = {'message':" ", 'alert':False}
+		return render(request, 'bytovuhaApp/login.html', context)
 
 def register(request):
 	if request.POST.has_key('username') and request.POST.has_key('pass'):

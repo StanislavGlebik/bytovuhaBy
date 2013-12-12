@@ -2,15 +2,17 @@
 
 {% block content %}
     <div class="container">
-      <form class="form-signin" action="login/" method="post">
+      <form class="form-signin" action="/login/" method="post">
         {% csrf_token %}
-        <h2 class="form-signin-heading">{{message}}</h2>
+		{% if alert %}
+        <div align="center" class="alert alert-danger">{{message}}</div>
+		{% endif %}
         <h2 align="center" class="form-signin-heading">Вход</h2>
         <input type="Username" name="username" class="form-control" placeholder="Имя пользователя" autofocus>
 		<p></p>
         <input type="password" name="pass" class="form-control" placeholder="Пароль"><br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-        <a class="btn btn-lg btn-primary btn-block" href="/register/">Зарегистрироваться</a>
+        <div align="center"><br><a href="/register/">Зарегистрироваться...</a></div>
       </form>
     </div> <!-- /container -->
 

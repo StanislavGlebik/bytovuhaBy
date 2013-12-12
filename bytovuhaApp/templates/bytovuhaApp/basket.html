@@ -1,12 +1,11 @@
 ﻿{% extends "bytovuhaApp/base_catalog.html" %}
 
 {% block content %}
-
   <div class="jumbotron">
     <div class="container">
 	    <h2>{{heading}}</h2>
 
-		<table class="table table-condensed">
+		<table class="table">
 		  <tr>
 		    <th>Товар</th>
 		    <th>Стоимость</th>
@@ -23,10 +22,10 @@
 			{%endfor%}
 		</table>
 
-
+<!--
 		{% if buyings%}
 	  		<p><a class="btn btn-primary btn-lg" href="/pay/">Купить &raquo;</a></p>
-	  	{% endif %}
+	  	{% endif %}-->
     </div>
   </div>
 {% endblock %}

@@ -25,7 +25,8 @@
 
             {% if user.is_authenticated %}          
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout">Выйти из системы</a></li>
+				<li><a>{{user}}</a></li>
+                <li><a href="/logout">Выйти</a></li>
               </ul> 
             {% else %}
               <form class="navbar-form navbar-right" action="login/" method="post">
@@ -51,8 +52,7 @@
 
     <div id="footer">
       <div class="container">
-        <p class="text-muted credit">Бытовуха.by &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Прочтите <a href="/contacts">о нас</a>, пожалуйста</p>
+        <p class="text-muted">Бытовуха.by &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Прочтите <a href="/contacts">о нас</a>, пожалуйста</p>
       </div>
     </div>
-
 </body>

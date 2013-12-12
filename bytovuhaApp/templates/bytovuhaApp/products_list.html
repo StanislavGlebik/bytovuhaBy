@@ -14,14 +14,14 @@
 			{%for product in products %}		
 				  <tr>
 				  	<td><img src="{{ product.image_url }}" class="img-polaroid"></td>
-				    <td><li><a href="{% url 'product_description' product.id %}">{{product.name}}</a></li></td>
+				    <td><a href="{% url 'product_description' product.id %}">{{product.name}}</a></td>
 				    <td>${{product.price}}</td>
 				  </tr>
 			{%endfor%}
 		</table>
 <ul class="pager">
-  <li><a href="/products_for_category/{{category}}/{{prev_page}}">   &laquo   </a></li>
-  <li><a href="/products_for_category/{{category}}/{{next_page}}">   &raquo   </a></li>
+  <li><a href="/products_for_category/{{category}}/{{prev_page}}">&nbsp;&nbsp;&nbsp;&laquo;&nbsp;&nbsp;&nbsp;</a></li>
+  <li><a href="/products_for_category/{{category}}/{{next_page}}">&nbsp;&nbsp;&nbsp;&raquo;&nbsp;&nbsp;&nbsp;</a></li>
 </ul>
 
     </div>

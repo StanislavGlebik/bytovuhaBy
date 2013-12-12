@@ -15,6 +15,7 @@ class Product(models.Model):
 	price = models.IntegerField()
 	category = models.CharField(max_length=50, choices=CATEGORIES)
 	image_url = models.CharField(max_length=4096)
+	description = models.CharField(max_length=16384)
 	def __unicode__(self):
 		return self.name
 

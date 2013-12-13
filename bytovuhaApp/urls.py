@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from bytovuhaApp import views
+from bytovuhaApp import wphone_views
 
 urlpatterns = patterns("",
 	url(r'^$', views.index),
@@ -9,6 +10,7 @@ urlpatterns = patterns("",
 	url(r'contacts/$', views.contacts),
 	url(r'send/$', views.send_mail),	
 	url(r'register/$', views.register),	
+	url(r'wplogin/(?P<username>\w*)/(?P<password>\d+)', wphone_views.login_action),
 	url(r'products_for_category/(?P<category>\w*)/(?P<page>\d+)/$', views.products_for_category, name='products_for_category'),
 	url(r'pay/$', views.pay_for_products),
 	url(r'buy/(?P<product_id>\d+)/$', views.add_to_basket, name='buy'),	

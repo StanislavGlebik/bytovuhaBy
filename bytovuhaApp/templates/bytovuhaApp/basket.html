@@ -17,7 +17,7 @@
 
 			{%for name, price, amount, id in buyings %}		
 				  <tr>
-				    <td>{{name}}</td>
+				    <td><a href="{% url 'product_description' id %}">{{name}}</a></td>
 				    <td><div align="center">${{price}}</div></td>
 				    <td><div align="center">{{amount}}</div></td>
 				    <td><a href="{% url 'remove' id%}">Убрать &raquo;</a></td>

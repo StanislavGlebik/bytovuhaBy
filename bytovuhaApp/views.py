@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import redirect_to_login
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from smtplib import SMTPException
 
 from models import Customer, Product, Buyings
 
@@ -110,8 +111,11 @@ def remove_product_from_basket(request, product_id):
 def pay_for_products(request):
 	if request.user.is_authenticated():
 		User.objects.get(id = request.user.id).customer.products.clear()
-		send_mail("Спасибо за покупку", "Бытовуха.by поздравляет вас с покупкой!", User.objects.get(id = request.user.id).email)
-		return render(request, 'bytovuhaApp/thank_you.html')
+		try:
+			send_mail("Спасибо за покупку", "Бытовуха.by поздравляет вас с покупкой!", User.objects.get(id = request.user.id).email)
+		except Exception:
+			return render(request, 'bytovuhaApp/thank_you.html', {'header':'Ошибко', 'message': 'Мы бы выслали вам письмо, будь у нас инет:('})
+		return render(request, 'bytovuhaApp/thank_you.html', {'header':'Спасибо за покупку!', 'message': 'Вам было выслано письмо с деталями.'})
 	else:
 		# TODO: change to normal next url
 		return redirect_to_login("/")	
